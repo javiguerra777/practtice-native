@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Pressable } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import tw from 'twrnc';
 import { RootStackParamList } from '../../types';
-import { styles } from '../styles/login';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Signup'>
 const Signup = ({ navigation }: Props) => {
@@ -40,13 +40,13 @@ const Signup = ({ navigation }: Props) => {
     navigation.navigate('Home');
   }
   return (
-    <View style={styles.container}>
-      <View style={styles.form}>
-        <Text style={styles.header}>Sign Up</Text>
-        <View style={styles.label}>
-          <Text style={styles.labelText}>Name:</Text>
+    <View style={tw`h-full flex-col items-center justify-center`}>
+      <View style={tw`flex-col bg-zinc-800 p-5 rounded-2xl`}>
+        <Text style={tw`text-slate-200 self-center text-5xl`}>Sign Up</Text>
+        <View style={tw`flex-row items-center mt-3`}>
+          <Text style={tw`w-20 text-slate-200`}>Name:</Text>
           <TextInput
-            style={styles.input}
+            style={tw`bg-white w-50 ml-2 px-1`}
             editable
             placeholder='Ex: Yoshi Hoodie'
             maxLength={30}
@@ -54,10 +54,10 @@ const Signup = ({ navigation }: Props) => {
             onChangeText={text => changeState('NAME', text)}
           />
         </View>
-         <View style={styles.label}>
-          <Text style={styles.labelText}>Username:</Text>
+         <View style={tw`flex-row items-center mt-3`}>
+          <Text style={tw`w-20 text-slate-200`}>Username:</Text>
           <TextInput
-            style={styles.input}
+            style={tw`bg-white w-50 ml-2 px-1`}
             editable
             placeholder='YoshiHoodie777'
             maxLength={30}
@@ -65,10 +65,10 @@ const Signup = ({ navigation }: Props) => {
             onChangeText={text => changeState('USERNAME', text)}
           />
         </View>
-         <View style={styles.label}>
-          <Text style={styles.labelText}>Email:</Text>
+         <View style={tw`flex-row items-center mt-3`}>
+          <Text style={tw`w-20 text-slate-200`}>Email:</Text>
           <TextInput
-            style={styles.input}
+            style={tw`bg-white w-50 ml-2 px-1`}
             editable
             placeholder='YoshiTheDino@gmail.com'
             maxLength={30}
@@ -76,10 +76,10 @@ const Signup = ({ navigation }: Props) => {
             onChangeText={text => changeState('EMAIL', text)}
           />
         </View>
-         <View style={styles.label}>
-          <Text style={styles.labelText}>Password:</Text>
+         <View style={tw`flex-row items-center mt-3`}>
+          <Text style={tw`w-20 text-slate-200`}>Password:</Text>
           <TextInput
-            style={styles.input}
+            style={tw`bg-white w-50 ml-2 px-1`}
             editable
             maxLength={30}
             value={state.password}
@@ -88,12 +88,12 @@ const Signup = ({ navigation }: Props) => {
             onChangeText={text => changeState('PASSWORD', text)}
           />
         </View>
-      <Pressable style={styles.button} onPress={submit}>
-        <Text style={styles.white}>Complete Registration</Text>
+      <Pressable style={tw`bg-blue-400 flex-row justify-center py-1 mt-3 rounded-xl`} onPress={submit}>
+        <Text style={tw`text-slate-200`}>Complete Registration</Text>
       </Pressable>
       </View>
     </View>
   )
 }
 
-export default Signup
+export default Signup;

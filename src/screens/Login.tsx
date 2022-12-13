@@ -3,7 +3,6 @@ import { Text, View, TextInput, Pressable, Keyboard } from 'react-native';
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import tw from 'twrnc';
 import { UserCtx } from '../context/user';
-import { styles } from '../styles/login';
 import { RootStackParamList } from '../../types';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Login'>
@@ -41,13 +40,13 @@ const Login = ({ navigation }: Props) => {
     return false;
   }
   return (
-    <View style={styles.container}>
-      <View style={styles.form}>
-        <Text style={styles.header}>Login</Text>
-        <View style={styles.label}>
-          <Text style={styles.labelText}>Username:</Text>
+    <View style={tw`h-full flex-col items-center justify-center`}>
+      <View style={tw`flex-col bg-zinc-800 p-5 rounded-2xl`}>
+        <Text style={tw`text-slate-200 self-center text-5xl`}>Login</Text>
+        <View style={tw`flex-row items-center mt-3`}>
+          <Text style={tw`text-slate-200 w-20 mr-1`}>Username:</Text>
           <TextInput
-            style={styles.input}
+            style={tw`bg-white h-7 text-base w-40 px-1`}
             editable
             maxLength={30}
             value={state.username}
@@ -55,10 +54,10 @@ const Login = ({ navigation }: Props) => {
             onChangeText={text => changeState('USERNAME', text)}
           />
         </View>
-        <View style={styles.label}>
-          <Text style={styles.labelText}>Password: </Text>
+        <View style={tw`flex-row items-center mt-3`}>
+          <Text style={tw`text-slate-200 w-20 mr-1`}>Password: </Text>
           <TextInput
-            style={styles.input}
+            style={tw`bg-white h-7 text-base w-40 px-1`}
             editable
             maxLength={30}
             value={state.password}
@@ -67,12 +66,12 @@ const Login = ({ navigation }: Props) => {
             onChangeText={text => changeState('PASSWORD', text)}
           />
         </View>
-        <Pressable disabled={disabled()} style={styles.button} onPress={submit}>
-          <Text style={styles.white}>Submit</Text>
+        <Pressable disabled={disabled()} style={tw`bg-blue-400 flex-row justify-center mt-5 py-1 rounded-xl`} onPress={submit}>
+          <Text style={tw`text-slate-100`}>Submit</Text>
         </Pressable>
         <View>
-          <Text style={tw`text-slate-200 mt-3`}>Don't have an account? <Text style={styles.link} onPress={() => navigation.navigate('Signup')}>Sign up Here</Text></Text>
-          <Text style={tw`text-slate-200 mt-3`}>Forgot Password? <Text style={styles.link}>Click Here</Text></Text>
+          <Text style={tw`text-slate-200 mt-3`}>Don't have an account? <Text style={tw`underline`} onPress={() => navigation.navigate('Signup')}>Sign up Here</Text></Text>
+          <Text style={tw`text-slate-200 mt-3`}>Forgot Password? <Text style={tw`underline`}>Click Here</Text></Text>
         </View>
       </View>
     </View>
