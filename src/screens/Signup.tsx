@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Pressable } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { Formik } from 'formik';
 import tw from 'twrnc';
 import { RootStackParamList } from '../../types';
 
@@ -41,8 +42,14 @@ const Signup = ({ navigation }: Props) => {
   }
   return (
     <View style={tw`h-full flex-col items-center justify-center`}>
+      <Formik
+        initialValues={{ name: '', username: '', email: '', password: '' }}
+        onSubmit={values => console.log(values)}
+      >
+      {/* Form  and Formik*/}
       <View style={tw`flex-col bg-zinc-800 p-5 rounded-2xl`}>
         <Text style={tw`text-slate-200 self-center text-5xl`}>Sign Up</Text>
+
         <View style={tw`flex-row items-center mt-3`}>
           <Text style={tw`w-20 text-slate-200`}>Name:</Text>
           <TextInput
@@ -52,7 +59,7 @@ const Signup = ({ navigation }: Props) => {
             maxLength={30}
             value={state.name}
             onChangeText={text => changeState('NAME', text)}
-          />
+            />
         </View>
          <View style={tw`flex-row items-center mt-3`}>
           <Text style={tw`w-20 text-slate-200`}>Username:</Text>
@@ -63,7 +70,7 @@ const Signup = ({ navigation }: Props) => {
             maxLength={30}
             value={state.username}
             onChangeText={text => changeState('USERNAME', text)}
-          />
+            />
         </View>
          <View style={tw`flex-row items-center mt-3`}>
           <Text style={tw`w-20 text-slate-200`}>Email:</Text>
@@ -74,7 +81,7 @@ const Signup = ({ navigation }: Props) => {
             maxLength={30}
             value={state.email}
             onChangeText={text => changeState('EMAIL', text)}
-          />
+            />
         </View>
          <View style={tw`flex-row items-center mt-3`}>
           <Text style={tw`w-20 text-slate-200`}>Password:</Text>
@@ -91,7 +98,8 @@ const Signup = ({ navigation }: Props) => {
       <Pressable style={tw`bg-blue-400 flex-row justify-center py-1 mt-3 rounded-xl`} onPress={submit}>
         <Text style={tw`text-slate-200`}>Complete Registration</Text>
       </Pressable>
-      </View>
+        </View>
+    </Formik>
     </View>
   )
 }
